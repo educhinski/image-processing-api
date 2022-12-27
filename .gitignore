@@ -1,0 +1,8 @@
+# node modules
+node_modules/
+
+# vscode settings
+.vscode/
+
+# build
+build/

@@ -1,0 +1,55 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "description": "A Node.js Image Processing API",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "prettier": "prettier --config .prettierrc '**.ts' --write",
+    "lint": "eslint",
+    "jasmine": "jasmine",
+    "build": "npx tsc",
+    "test": "npm run build && npm run jasmine",
+    "final": "npm run prettier && npm run lint && npm run build && node ./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/educhinski/image-processing-api.git"
+  },
+  "keywords": [
+    "image",
+    "image processing",
+    "api",
+    "node",
+    "sharp",
+    "jasmine",
+    "typescript",
+    "supertest",
+    "udacity",
+    "project"
+  ],
+  "author": "Edwin Mambo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/educhinski/image-processing-api/issues"
+  },
+  "homepage": "https://github.com/educhinski/image-processing-api#readme",
+  "devDependencies": {
+    "@types/jasmine": "^4.3.1",
+    "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "jasmine": "^4.5.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "supertest": "^6.3.3"
+  }
+}
