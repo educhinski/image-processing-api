@@ -1,13 +1,11 @@
 import express from 'express';
+import routes from './routes';
 
 const app = express();
 const port = 3000;
 
-// create an endpoint
-app.get('/', (req, res) => {
-  console.log('Image Processing API - on');
-  res.send('Hello. Welcome to Image Processing API');
-});
+// use routes endpoint
+app.use('/api', routes);
 
 // initiate server
 app.listen(port, () =>
