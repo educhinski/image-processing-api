@@ -1,8 +1,8 @@
 # image-processing-api
 
-A Node.js Image Processing API
+A Node.js Image Processing API, written in TypeScript.
 
-This api receives image filename, edits images based on dimensions parsed in the query parameters and saves them in thumbs folder. It uses [sharp](https://www.npmjs.com/package/sharp) module to process the image.
+This api receives image filename, edits images based on dimensions parsed in the query parameters, saves them and renders the resized images. It uses [sharp](https://www.npmjs.com/package/sharp) module to process the images.
 
 ## Setup
 
@@ -58,10 +58,18 @@ The following are the available filename:
 
 Example queries
 
+Correct:
+
+`http://localhost:3000/api/images?filename=fjord&width=300&height=300`
+
+Incorrect:
+
 `http://localhost:3000/api/images?filename=fjord`
+
+`http://localhost:3000/api/images?filename=nonexistent`
 
 `http://localhost:3000/api/images?filename=fjord&width=200`
 
 `http://localhost:3000/api/images?filename=fjord&height=200`
 
-`http://localhost:3000/api/images?filename=fjord&width=300&height=300`
+`http://localhost:3000/api/images?filename=fjord&height=one`

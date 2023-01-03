@@ -1,6 +1,6 @@
 import express from 'express';
 import images from './api/images.route';
-import imageController from './controller/images.controller';
+import { imageController } from './controller/images.controller';
 
 // init our Router
 const routes = express.Router();

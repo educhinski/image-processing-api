@@ -1,23 +1,32 @@
-import supertest from 'supertest';
-import app from '../../indexSpec';
+import path from 'path';
+import { existsSync, unlinkSync } from 'fs';
+import { resizeImage } from '../../../routes/controller/images.controller';
 
-// test our endpoint
-const request = supertest(app);
+// test our sharp functionality
+// declare some variables
+const h = 200,
+  w = 200;
+const filename = 'fjord';
+const originalFilePath = path.join(process.cwd(), 'images', `${filename}.jpg`);
 
-describe('Sharp Image Processor tests', () => {
-  // test sharp functionality
-  it('test whether the correct code is sent on accessing full api', async () => {
-    const response = await request.get('/api/images?filename');
-    expect(response.status).toBe(301);
+const editedFilePath = path.join(
+  process.cwd(),
+  'images',
+  'thumbs',
+  `${filename}-${w}-${h}.jpg`
+);
+
+describe('Test Image Processor', () => {
+  beforeAll(() => {
+    if (existsSync(editedFilePath)) unlinkSync(editedFilePath);
   });
 
-  it('test whether the sharp raises the correct error with wrong filename', async () => {
-    const response = await request.get('/api/images?filename=nonexistent');
-    expect(response.status).toBe(301);
+  it('Expect edited file to be absent before running Sharp Processing', () => {
+    expect(existsSync(editedFilePath)).toBeFalse();
   });
 
-  it('test whether the api responds correctly with the correct filename', async () => {
-    const response = await request.get('/api/images?filename=fjord');
-    expect(response.status).toBe(301);
+  it('Expect edited file to be present after running Sharp Processing', async () => {
+    await resizeImage(originalFilePath, editedFilePath, w, h);
+    const fileExists = expect(existsSync(editedFilePath)).toBeTrue();
   });
 });
