@@ -5,9 +5,15 @@ import app from '../../indexSpec';
 const request = supertest(app);
 
 describe('Test images endpoint', async () => {
-  // test whether the endpoint connects
-  it('get the api endpoint', async () => {
-    const response = await request.get('/api/images');
+  it('Test whether the api responds correctly with the wrong filename', async () => {
+    const response = await request.get('/api/images?filename=nonexistent');
+    expect(response.status).toBe(301);
+  });
+
+  it('Test whether the api responds correctly with the correct filename', async () => {
+    const response = await request.get(
+      '/api/images?filename=fjord&width=200&height=200'
+    );
     expect(response.status).toBe(301);
   });
 });

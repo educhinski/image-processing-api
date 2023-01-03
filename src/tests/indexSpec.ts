@@ -4,9 +4,9 @@ import app from '../index';
 // test our endpoint
 const request = supertest(app);
 
-describe('Test homepage', () => {
+describe('Test Homepage', () => {
   // test whether the endpoint connects
-  it('get the home endpoint', async () => {
+  it('Get the home endpoint and test its response code', async () => {
     const response = await request.get('/');
     expect(response.status).toBe(404);
   });
